@@ -1,31 +1,17 @@
-const btnMagic = document.querySelector('#btn');
-const boxes = document.querySelector('#boxes');
-const quantity = 16;
+const btn = document.querySelector('#btn');
+const boxesContainer = document.querySelector('#boxes');
 
-let positionX = 0;
-let positionY = 0;
+btn.addEventListener('click', ()=> boxesContainer.classList.toggle('big'));
 
-
-for (let i = 0; i < quantity; i++) {
-
-   const boxEl = document.createElement('div');
-   boxEl.classList.add('box');
-   console.log (positionX);
-   console.log (positionY);
-   boxEl.style.backgroundPosition = `${positionX}px ${positionY}px`
-
-   if ((i+1) % 4 === 0){
-      positionX = 0;
-      positionY = positionY -125;
-   }else {
-      positionX = positionX -125;
+function createBoxes(){
+   for (let i = 0; i < 4; i++){
+      for (let j = 0; j < 4; j++) {
+         const box = document.createElement('div');
+         box.classList.add('box');
+         box.style.backgroundPosition = `${-j * 125}px ${-i * 125}px`;
+         boxesContainer.appendChild(box);
+      }
    }
-
-   boxes.appendChild(boxEl);
 }
 
-btnMagic.addEventListener('click', ()=>{
-   boxes.classList.toggle('big');
-})
-
-
+createBoxes()
